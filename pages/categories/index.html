@@ -1,1 +1,77 @@
-asd
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <%- include('../head.ejs') %>
+  <body>
+    <%- include('../header.ejs') %>
+    <div class="container py-3">
+      <div class="row pt-5 pb-4">
+        <div class="col">
+          <div class="pb-4">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="/">Home</a></li>
+                <li class="breadcrumb-item active">Categories</li>
+              </ol>
+            </nav>
+          </div>
+          <h1 class="">Categories</h1>
+        </div>
+      </div>
+      <div class="row pb-5">
+        <div class="col">
+          <a
+            class="btn btn-primary"
+            href="/<%= authors.tanishi %>/categories/add"
+            >Add a category</a
+          >
+        </div>
+      </div>
+      <div class="row">
+        <div class="col">
+          <table class="table table-striped">
+            <thead>
+              <tr>
+                <th scope="col" class="py-3">#</th>
+                <th scope="col" class="py-3">Name</th>
+                <th scope="col" class="py-3">Description</th>
+                <th scope="col" class="py-3">Image</th>
+                <th scope="col" class="py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              <% if (data.categories.length) { %> <% for( const {id,name,
+              description,image} of data.categories) { %>
+              <tr>
+                <td class="py-3"><%= id %></td>
+                <td class="py-3"><%= name %></td>
+                <td class="py-3"><%= description %></td>
+                <td class="py-3"><%= image %></td>
+                <td class="py-3">
+                  <a href="#" class="pe-2 link-underline-dark">Details</a>
+
+                  <a
+                    href="/<%= authors.tanishi %>/categories"
+                    onclick="javascript:fetch('/<%= authors.tanishi %>/categories/<%= id %>',  {
+                    method: 'DELETE'
+                  })"
+                    class="pe-2 link-danger link-underline-dark"
+                    >Delete</a
+                  >
+                </td>
+              </tr>
+              <% } %> <% } else { %>
+              <tr>
+                <td class="py-3">-</td>
+                <td class="py-3">-</td>
+                <td class="py-3">-</td>
+                <td class="py-3">-</td>
+                <td class="py-3">-</td>
+              </tr>
+              <% }%>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

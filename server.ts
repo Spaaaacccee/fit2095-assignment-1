@@ -1,9 +1,11 @@
 import { urlencoded } from "body-parser";
 import { renderFile } from "ejs";
 import { static as assets, default as express } from "express";
-import { Dictionary as Dict } from "lodash";
+import { Dictionary as Dict, filter } from "lodash";
 import morgan from "morgan";
 import { resolve } from "path";
+import { Event } from "./Event";
+import { EventCategory } from "./EventCategory";
 
 const port = 8080;
 
@@ -14,7 +16,7 @@ const authors = {
   tanishi: "32586949",
 };
 
-const data = {
+const data: { events: Event[]; categories: EventCategory[] } = {
   events: [],
   categories: [],
 };
@@ -41,7 +43,11 @@ app.use(
     res.send(await render("pages/categories/add.html"))
   );
 
-  app.post(`/${authors.tanishi}/categories/add`, (req) => {});
+  app.post(`/${authors.tanishi}/categories/add`, (req, res) => {
+    const { name, description, image } = req.body;
+    data.categories.push(new EventCategory(name, description, image));
+    res.redirect(`/${authors.tanishi}/categories`);
+  });
 
   // ─── List Categories ───────────────────────────────────────────────────────
 
@@ -59,7 +65,11 @@ app.use(
 
   // ─── Delete Category ───────────────────────────────────────────────────────
 
-  app.delete(`/${authors.tanishi}/categories/:id`, async (req) => {});
+  app.delete(`/${authors.tanishi}/categories/:id`, async (req, res) => {
+    const { id } = req.params;
+    data.categories = filter(data.categories, (c) => c.id !== id);
+    res.redirect(`/${authors.tanishi}/categories`);
+  });
 }
 
 // ─── Task Group 2 ────────────────────────────────────────────────────────────
@@ -94,7 +104,7 @@ app.use(
 
   // ─── Delete Event ──────────────────────────────────────────────────────────
 
-  app.delete(`/${authors.kevin}/events/:id`, async (req) => {});
+  app.delete(`/${authors.kevin}/events/:id`, async (req, res) => {});
 }
 
 // ─── Home ────────────────────────────────────────────────────────────────────

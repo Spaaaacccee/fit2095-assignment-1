@@ -1,10 +1,7 @@
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
 <nav class="navbar navbar-expand-lg bg-body-tertiary">
   <div class="container-fluid">
-    <a class="navbar-brand" href="/">
-      <i class="fa-solid fa-rocket" style="color: #8a72e1"></i>
-      <%= name; %>
-    </a>
+    <a class="navbar-brand" href="/"> <%= name; %> </a>
     <button
       class="navbar-toggler"
       type="button"
@@ -19,10 +16,10 @@
     <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
       <div class="navbar-nav">
         <a class="nav-link active" aria-current="page" href="/">Home</a>
-        <a class="nav-link" href="/<%= authors.tanishi %>/events"
+        <a class="nav-link" href="/<%= authors.kevin %>/events"
           >Events (<%= data.events.length %>)</a
         >
-        <a class="nav-link" href="/<%= authors.kevin %>/categories"
+        <a class="nav-link" href="/<%= authors.tanishi %>/categories"
           >Categories (<%= data.categories.length %>)</a
         >
       </div>

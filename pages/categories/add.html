@@ -5,26 +5,46 @@
     <%- include('../header.ejs') %>
     <div class="container py-3">
       <div class="row py-5">
+        <div class="pb-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item">
+                <a href="/<%= authors.tanishi %>/categories">Categories</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Add a Category
+              </li>
+            </ol>
+          </nav>
+        </div>
         <h1 class="">Add a Category</h1>
       </div>
       <div class="row">
-        <form>
+        <form method="post" action="/<%= authors.tanishi %>/categories/add">
           <div class="pb-3">
             <label for="name" class="form-label">Category Name</label>
             <input
               type="text"
               class="form-control"
               id="name"
+              name="name"
               placeholder="My Category"
             />
           </div>
           <div class="pb-3">
             <label for="description" class="form-label">Description</label>
-            <textarea class="form-control" id="description" rows="3"></textarea>
+            <textarea
+              name="description"
+              class="form-control"
+              id="description"
+              rows="3"
+            ></textarea>
           </div>
           <div class="pb-3">
             <label for="image" class="form-label">Image</label>
             <input
+              name="image"
               accept="image/*"
               class="form-control"
               type="file"
@@ -32,7 +52,7 @@
             />
           </div>
           <div class="pt-3">
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" class="btn btn-primary">Done</button>
           </div>
         </form>
       </div>
