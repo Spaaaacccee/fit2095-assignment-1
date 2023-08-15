@@ -99,8 +99,12 @@ app.use(
 
 // ─── Home ────────────────────────────────────────────────────────────────────
 
-app.get("*", async (_, res) => {
+app.get("/", async (_, res) => {
   res.send(await render("pages/index.html"));
+});
+
+app.get("*", async (_, res) => {
+  res.send(await render("pages/404.html"));
 });
 
 // ─── Start ─────────────────────────────────────────────────────────────────

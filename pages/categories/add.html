@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <%- include('../head.ejs') %>
+  <body>
+    <%- include('../header.ejs') %>
+    <div class="container py-3">
+      <div class="row py-5">
+        <h1 class="">Add a Category</h1>
+      </div>
+      <div class="row">
+        <form>
+          <div class="pb-3">
+            <label for="name" class="form-label">Category Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              placeholder="My Category"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" rows="3"></textarea>
+          </div>
+          <div class="pb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              accept="image/*"
+              class="form-control"
+              type="file"
+              id="image"
+            />
+          </div>
+          <div class="pt-3">
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>
