@@ -43,11 +43,15 @@
               description,image} of data.categories) { %>
               <tr>
                 <td class="py-3"><%= id %></td>
-                <td class="py-3"><%= name %></td>
-                <td class="py-3"><%= description %></td>
-                <td class="py-3"><%= image %></td>
+                <td class="py-3"><%= name || "-" %></td>
+                <td class="py-3"><%= description || "-" %></td>
+                <td class="py-3"><%= image || "-" %></td>
                 <td class="py-3">
-                  <a href="#" class="pe-2 link-underline-dark">Details</a>
+                  <a
+                    href="/<%= authors.kevin %>/categories/<%= id %>"
+                    class="pe-2 link-underline-dark"
+                    >Details</a
+                  >
 
                   <a
                     href="/<%= authors.tanishi %>/categories"
