@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html data-bs-theme="dark">
+  <%- include('../head.ejs') %>
+  <body>
+    <%- include('../header.ejs') %>
+    <div class="container py-3">
+      <div class="row py-5">
+        <div class="pb-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item">
+                <a href="/kevin/events">Events</a>
+              </li>
+              <li class="breadcrumb-item active" aria-current="page">
+                Add an Event
+              </li>
+            </ol>
+          </nav>
+        </div>
+        <h1 class="">Add an Event</h1>
+      </div>
+      <div class="row">
+        <form method="post" action="/kevin/events/add">
+          <div class="pb-3">
+            <label for="name" class="form-label">Event Name</label>
+            <input
+              type="text"
+              class="form-control"
+              id="name"
+              name="name"
+              placeholder="My Category"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="description" class="form-label">Event Description</label>
+            <textarea
+              name="description"
+              class="form-control"
+              id="description"
+              rows="3"
+            ></textarea>
+          </div>
+          <div class="pb-3">
+            <label for="image" class="form-label">Image</label>
+            <input
+              name="image"
+              accept="image/*"
+              class="form-control"
+              type="file"
+              id="image"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="startDateTime" class="form-label">Start Date and Time</label>
+            <input
+              name="startDateTime"
+              class="form-control"
+              type="datetime-local"
+              id="startDateTime"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="duration" class="form-label">duration</label>
+            <input
+              name="duration"
+              class="form-control"
+              type="number"
+              id="duration"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="isActive" class="form-label">Is Active</label>
+            <input
+              name="isActive"
+              class="form-control"
+              type="checkbox"
+              id="isActive"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="capacity" class="form-label">Capacity</label>
+            <input
+              name="capacity"
+              class="form-control"
+              type="number"
+              id="capacity"
+            />
+          </div>
+          <div class="pb-3">
+            <label for="categoryId" class="form-label">Category ID</label>
+            <input
+              name="categoryId"
+              class="form-control"
+              type="text"
+              id="categoryId"
+            />
+          </div>
+
+          <div class="pt-3">
+            <button type="submit" class="btn btn-primary">Done</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </body>
+</html>

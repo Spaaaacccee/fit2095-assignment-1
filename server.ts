@@ -77,34 +77,46 @@ app.use(
 {
   // ─── Add Event ─────────────────────────────────────────────────────────────
 
-  app.get(`/${authors.kevin}/events/add`, async (_, res) =>
+  app.get(`/kevin/events/add`, async (_, res) =>
     res.send(await render("pages/events/add.html"))
   );
 
-  app.post(`/${authors.kevin}/events/add`, (req) => {});
+  app.post(`/kevin/events/add`, (req) => {
+    const { name, description, image,categoryId,startDateTime,duration,isActive,capacity,tickets } = req.body;
+    data.events.push(new Event(name, description, image,categoryId,startDateTime,duration,isActive,capacity,tickets));
+    res.redirect(`/kevin/events`);
+  });
+  
 
   // ─── List All Events ───────────────────────────────────────────────────────
 
-  app.get(`/${authors.kevin}/events`, async (_, res) => {
+  app.get(`/kevin/events`, async (_, res) => {
+    const { keyword } = req.query;
     res.send(await render("pages/events/index.html"));
+
   });
 
   // ─── List Sold-out Events ──────────────────────────────────────────────────
 
-  app.get(`/${authors.kevin}/events/sold-out`, async (_, res) => {
+  app.get(`/kevin/events/sold-out`, async (_, res) => {
     res.send(await render("pages/events/index.html", { soldOutOnly: true }));
   });
 
   // ─── Category Details ──────────────────────────────────────────────────────
 
-  app.get(`/${authors.kevin}/categories/:id`, async (req, res) => {
+  app.get(`/kevin/categories/:id`, async (req, res) => {
     const { id } = req.params;
     res.send(await render("pages/categories/details.html", { id }));
   });
 
   // ─── Delete Event ──────────────────────────────────────────────────────────
 
-  app.delete(`/${authors.kevin}/events/:id`, async (req, res) => {});
+  app.delete(`/kevin/events/:id`, async (req, res) => {
+    const { id } = req.params;
+    data.events = filter(data.events, (c) => c.id !== id);
+    res.redirect(`/kevin/events`);
+  });
+
 }
 
 // ─── Home ────────────────────────────────────────────────────────────────────
