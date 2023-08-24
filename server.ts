@@ -12,8 +12,8 @@ const port = 8080;
 const name = "Event Management App";
 
 const authors = {
-  kevin: "31458149",
-  tanishi: "32586949",
+  a: { id: "31458149", name: "kevin" },
+  b: { id: "32586949", name: "tanishi" },
 };
 
 const data: { events: Event[]; categories: EventCategory[] } = {
@@ -39,36 +39,36 @@ app.use(
 {
   // ─── Add Category ──────────────────────────────────────────────────────────
 
-  app.get(`/${authors.tanishi}/categories/add`, async (_, res) =>
+  app.get(`/${authors.b.id}/categories/add`, async (_, res) =>
     res.send(await render("pages/categories/add.html"))
   );
 
-  app.post(`/${authors.tanishi}/categories/add`, (req, res) => {
+  app.post(`/${authors.b.id}/categories/add`, (req, res) => {
     const { name, description, image } = req.body;
     data.categories.push(new EventCategory(name, description, image));
-    res.redirect(`/${authors.tanishi}/categories`);
+    res.redirect(`/${authors.b.id}/categories`);
   });
 
   // ─── List Categories ───────────────────────────────────────────────────────
 
-  app.get(`/${authors.tanishi}/categories`, async (req, res) => {
+  app.get(`/${authors.b.id}/categories`, async (req, res) => {
     const { keyword } = req.query;
     res.send(await render("pages/categories/index.html", { keyword }));
   });
 
   // ─── Event Details ─────────────────────────────────────────────────────────
 
-  app.get(`/${authors.tanishi}/events/:id`, async (req, res) => {
+  app.get(`/${authors.b.id}/events/:id`, async (req, res) => {
     const { id } = req.params;
     res.send(await render("pages/events/details.html", { id }));
   });
 
   // ─── Delete Category ───────────────────────────────────────────────────────
 
-  app.delete(`/${authors.tanishi}/categories/:id`, async (req, res) => {
+  app.delete(`/${authors.b.id}/categories/:id`, async (req, res) => {
     const { id } = req.params;
     data.categories = filter(data.categories, (c) => c.id !== id);
-    res.redirect(`/${authors.tanishi}/categories`);
+    res.redirect(`/${authors.b.id}/categories`);
   });
 }
 
@@ -77,46 +77,65 @@ app.use(
 {
   // ─── Add Event ─────────────────────────────────────────────────────────────
 
-  app.get(`/kevin/events/add`, async (_, res) =>
+  app.get(`/${authors.a.name}/events/add`, async (_, res) =>
     res.send(await render("pages/events/add.html"))
   );
 
-  app.post(`/kevin/events/add`, (req) => {
-    const { name, description, image,categoryId,startDateTime,duration,isActive,capacity,tickets } = req.body;
-    data.events.push(new Event(name, description, image,categoryId,startDateTime,duration,isActive,capacity,tickets));
-    res.redirect(`/kevin/events`);
+  app.post(`/${authors.a.name}/events/add`, (req, res) => {
+    const {
+      name,
+      description,
+      image,
+      categoryId,
+      startDateTime,
+      duration,
+      isActive,
+      capacity,
+      tickets,
+    } = req.body;
+    data.events.push(
+      new Event(
+        name,
+        description,
+        image,
+        categoryId,
+        startDateTime,
+        duration,
+        isActive,
+        capacity,
+        tickets
+      )
+    );
+    res.redirect(`/${authors.a.name}/events`);
   });
-  
 
   // ─── List All Events ───────────────────────────────────────────────────────
 
-  app.get(`/kevin/events`, async (_, res) => {
+  app.get(`/${authors.a.name}/events`, async (req, res) => {
     const { keyword } = req.query;
     res.send(await render("pages/events/index.html"));
-
   });
 
   // ─── List Sold-out Events ──────────────────────────────────────────────────
 
-  app.get(`/kevin/events/sold-out`, async (_, res) => {
+  app.get(`/${authors.a.name}/events/sold-out`, async (_, res) => {
     res.send(await render("pages/events/index.html", { soldOutOnly: true }));
   });
 
   // ─── Category Details ──────────────────────────────────────────────────────
 
-  app.get(`/kevin/categories/:id`, async (req, res) => {
+  app.get(`/${authors.a.name}/categories/:id`, async (req, res) => {
     const { id } = req.params;
     res.send(await render("pages/categories/details.html", { id }));
   });
 
   // ─── Delete Event ──────────────────────────────────────────────────────────
 
-  app.delete(`/kevin/events/:id`, async (req, res) => {
+  app.delete(`/${authors.a.name}/events/:id`, async (req, res) => {
     const { id } = req.params;
     data.events = filter(data.events, (c) => c.id !== id);
-    res.redirect(`/kevin/events`);
+    res.redirect(`/${authors.a.name}/events`);
   });
-
 }
 
 // ─── Home ────────────────────────────────────────────────────────────────────

@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item">
-                <a href="/<%= authors.tanishi %>/categories">Categories</a>
+                <a href="/<%= authors.b.id %>/categories">Categories</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 Add a Category
@@ -21,7 +21,7 @@
         <h1 class="">Add a Category</h1>
       </div>
       <div class="row">
-        <form method="post" action="/<%= authors.tanishi %>/categories/add">
+        <form method="post" action="/<%= authors.b.id %>/categories/add">
           <div class="pb-3">
             <label for="name" class="form-label">Category Name</label>
             <input
@@ -44,11 +44,11 @@
           <div class="pb-3">
             <label for="image" class="form-label">Image</label>
             <input
-              name="image"
-              accept="image/*"
+              type="text"
               class="form-control"
-              type="file"
               id="image"
+              name="image"
+              placeholder="Path to static resource"
             />
           </div>
           <div class="pt-3">

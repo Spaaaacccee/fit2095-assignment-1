@@ -10,7 +10,7 @@
             <ol class="breadcrumb">
               <li class="breadcrumb-item"><a href="/">Home</a></li>
               <li class="breadcrumb-item">
-                <a href="/kevin/events">Events</a>
+                <a href="/<%= authors.a.name %>/events">Events</a>
               </li>
               <li class="breadcrumb-item active" aria-current="page">
                 Add an Event
@@ -21,7 +21,7 @@
         <h1 class="">Add an Event</h1>
       </div>
       <div class="row">
-        <form method="post" action="/kevin/events/add">
+        <form method="post" action="/<%= authors.a.name %>/events/add">
           <div class="pb-3">
             <label for="name" class="form-label">Event Name</label>
             <input
@@ -29,11 +29,13 @@
               class="form-control"
               id="name"
               name="name"
-              placeholder="My Category"
+              placeholder="My Event"
             />
           </div>
           <div class="pb-3">
-            <label for="description" class="form-label">Event Description</label>
+            <label for="description" class="form-label"
+              >Event Description</label
+            >
             <textarea
               name="description"
               class="form-control"
@@ -44,15 +46,17 @@
           <div class="pb-3">
             <label for="image" class="form-label">Image</label>
             <input
-              name="image"
-              accept="image/*"
+              type="text"
               class="form-control"
-              type="file"
               id="image"
+              name="image"
+              placeholder="Path to static resource"
             />
           </div>
           <div class="pb-3">
-            <label for="startDateTime" class="form-label">Start Date and Time</label>
+            <label for="startDateTime" class="form-label"
+              >Start Date and Time</label
+            >
             <input
               name="startDateTime"
               class="form-control"
@@ -61,21 +65,12 @@
             />
           </div>
           <div class="pb-3">
-            <label for="duration" class="form-label">duration</label>
+            <label for="duration" class="form-label">Duration</label>
             <input
               name="duration"
               class="form-control"
               type="number"
               id="duration"
-            />
-          </div>
-          <div class="pb-3">
-            <label for="isActive" class="form-label">Is Active</label>
-            <input
-              name="isActive"
-              class="form-control"
-              type="checkbox"
-              id="isActive"
             />
           </div>
           <div class="pb-3">
@@ -96,7 +91,20 @@
               id="categoryId"
             />
           </div>
-
+          <div class="py-3">
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="isActive"
+                name="isActive"
+              />
+              <label class="form-check-label" for="flexCheckDefault">
+                Create as active event
+              </label>
+            </div>
+          </div>
           <div class="pt-3">
             <button type="submit" class="btn btn-primary">Done</button>
           </div>
