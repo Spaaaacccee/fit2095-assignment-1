@@ -2,125 +2,125 @@
 <html data-bs-theme="dark">
 <%- include('../head.ejs') %>
 
-  <body>
-    <%- include('../header.ejs') %>
-      <div class="container py-3">
-        <div class="row pt-5 pb-4">
-          <div class="col">
-            <div class="pb-4">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/">Home</a></li>
-                  <li class="breadcrumb-item active">Categories</li>
-                </ol>
-              </nav>
-            </div>
-            <h1 class="">
-              <%= soldOutOnly ? "Sold Out Events" : "Events" %>
-            </h1>
-          </div>
+<body>
+  <%- include('../header.ejs') %>
+  <div class="container py-3">
+    <div class="row pt-5 pb-4">
+      <div class="col">
+        <div class="pb-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Categories</li>
+            </ol>
+          </nav>
         </div>
-        <div class="row pb-5">
-          <div class="col" style="display:flex;">
-            <a class="btn btn-primary" href="/<%= authors.a.name %>/events/add">Add an event</a>
-            <div style="flex: 1"></div>
-            <a class="btn btn-secondary" href="/<%= authors.a.name %>/events<%= soldOutOnly ?'': '/sold-out' %>">
-              <%= soldOutOnly ? "Show All" : "Show Sold Out Only" %>
-            </a>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <table class="table table-striped" style="table-layout: fixed">
-              <thead>
-                <tr>
-                  <th scope="col" class="py-3">#</th>
-                  <th scope="col" class="py-3">Name</th>
-                  <th scope="col" class="py-3">Description</th>
-                  <th scope="col" class="py-3">Image</th>
-                  <th scope="col" class="py-3">Category</th>
-                  <th scope="col" class="py-3">Start Date & Time</th>
-                  <th scope="col" class="py-3">Duration</th>
-                  <th scope="col" class="py-3">Active</th>
-                  <th scope="col" class="py-3">Capacity</th>
-                  <th scope="col" class="py-3">Tickets</th>
-                  <th scope="col" class="py-3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% const filteredEvents=soldOutOnly ? data.events.filter(({tickets})=>
+        <h1 class="">
+          <%= soldOutOnly ? "Sold Out Events" : "Events" %>
+        </h1>
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col" style="display:flex;">
+        <a class="btn btn-primary" href="/<%= authors.a.name %>/events/add">Add an event</a>
+        <div style="flex: 1"></div>
+        <a class="btn btn-dark" href="/<%= authors.a.name %>/events<%= soldOutOnly ?'': '/sold-out' %>">
+          <%= soldOutOnly ? "Show All" : "Show Sold Out Only" %>
+        </a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped" style="table-layout: fixed">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3">#</th>
+              <th scope="col" class="py-3">Name</th>
+              <th scope="col" class="py-3">Description</th>
+              <th scope="col" class="py-3">Image</th>
+              <th scope="col" class="py-3">Category</th>
+              <th scope="col" class="py-3">Start Date & Time</th>
+              <th scope="col" class="py-3">Duration</th>
+              <th scope="col" class="py-3">Active</th>
+              <th scope="col" class="py-3">Capacity</th>
+              <th scope="col" class="py-3">Tickets</th>
+              <th scope="col" class="py-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% const filteredEvents=soldOutOnly ? data.events.filter(({tickets})=>
                   tickets===0) :
                   data.events %>
-                  <% if (filteredEvents.length) { %>
-                    <% for( const {id,name, description,image,categoryId,startDateTime,duration,isActive, capacity,
+            <% if (filteredEvents.length) { %>
+            <% for( const {id,name, description,image,categoryId,startDateTime,duration,isActive, capacity,
                       tickets} of filteredEvents) { %>
-                      <tr>
-                        <td class="py-3">
-                          <%= id %>
-                        </td>
-                        <td class="py-3">
-                          <%= name || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <%= description || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <% if (image) { %>
-                            <img src="<%=image%>" width="100%" />
-                            <% } else { %>
-                              -
-                              <% } %>
-                        </td>
-                        <td class="py-3">
-                          <% const category=data.categories.find(c=>c.id===categoryId) %>
-                            <%= categoryId ? `${categoryId}, ${ category ? category.name || "Untitled" : "Deleted" }`
+            <tr>
+              <td class="py-3">
+                <%= id %>
+              </td>
+              <td class="py-3">
+                <%= name || "-" %>
+              </td>
+              <td class="py-3">
+                <%= description || "-" %>
+              </td>
+              <td class="py-3">
+                <% if (image) { %>
+                <img src="<%=image%>" width="100%" />
+                <% } else { %>
+                -
+                <% } %>
+              </td>
+              <td class="py-3">
+                <% const category=data.categories.find(c=>c.id===categoryId) %>
+                <%= categoryId ? `${categoryId}, ${ category ? category.name || "Untitled" : "Deleted" }`
                               : "-" %>
-                        </td>
+              </td>
 
-                        <td class="py-3">
-                          <%= datefns.format(startDateTime,"h:mm a, d MMMM yyyy") || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <%= duration ? datefns.formatDistanceStrict(0, duration*1000*60) : "-" %>
-                        </td>
-                        <td class="py-3">
-                          <%= isActive ? "Yes" :"No" %>
-                        </td>
-                        <td class="py-3">
-                          <%= capacity || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <%= tickets || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <a href="/<%= authors.b.id %>/events/<%= id %>" class="pe-2 link-underline-dark">Details</a>
+              <td class="py-3">
+                <%= datefns.format(startDateTime,"h:mm a, d MMMM yyyy") || "-" %>
+              </td>
+              <td class="py-3">
+                <%= duration ? datefns.formatDistanceStrict(0, duration*1000*60) : "-" %>
+              </td>
+              <td class="py-3">
+                <%= isActive ? "Yes" :"No" %>
+              </td>
+              <td class="py-3">
+                <%= capacity || "-" %>
+              </td>
+              <td class="py-3">
+                <%= tickets || "-" %>
+              </td>
+              <td class="py-3">
+                <a href="/<%= authors.b.id %>/events/<%= id %>" class="pe-2 link-underline-dark">Details</a>
 
-                          <a href="/<%= authors.a.name %>/events" onclick="javascript:fetch('/<%= authors.a.name %>/events/<%= id %>',  {
+                <a href="/<%= authors.a.name %>/events" onclick="javascript:fetch('/<%= authors.a.name %>/events/<%= id %>',  {
                     method: 'DELETE'
                   })" class="pe-2 link-danger link-underline-dark">Delete</a>
-                        </td>
-                      </tr>
-                      <% } %>
-                        <% } else { %>
-                          <tr>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                          </tr>
-                          <% }%>
-              </tbody>
-            </table>
-          </div>
-        </div>
+              </td>
+            </tr>
+            <% } %>
+            <% } else { %>
+            <tr>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+            </tr>
+            <% }%>
+          </tbody>
+        </table>
       </div>
-  </body>
+    </div>
+  </div>
+</body>
 
 </html>

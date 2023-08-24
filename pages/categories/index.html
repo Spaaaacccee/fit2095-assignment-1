@@ -2,97 +2,93 @@
 <html data-bs-theme="dark">
 <%- include('../head.ejs') %>
 
-  <body>
-    <%- include('../header.ejs') %>
-      <div class="container py-3">
-        <div class="row pt-5 pb-4">
-          <div class="col">
-            <div class="pb-4">
-              <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                  <li class="breadcrumb-item"><a href="/">Home</a></li>
-                  <li class="breadcrumb-item active">Categories</li>
-                </ol>
-              </nav>
-            </div>
-            <h1 class="">
-              <%= keyword ? `Categories with "${keyword}" ` : "Categories" %>
-            </h1>
-          </div>
+<body>
+  <%- include('../header.ejs') %>
+  <div class="container py-3">
+    <div class="row pt-5 pb-4">
+      <div class="col">
+        <div class="pb-4">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="/">Home</a></li>
+              <li class="breadcrumb-item active">Categories</li>
+            </ol>
+          </nav>
         </div>
+        <h1 class="">
+          <%= keyword ? `Categories with "${keyword}" ` : "Categories" %>
+        </h1>
+      </div>
+    </div>
 
-        <div class="row pb-5">
-          <div class="col" style="display:flex;">
-            <a class="btn btn-primary" href="/<%= authors.b.id %>/categories/add">Add a category</a>
-            <div style="flex: 1"></div>
-            <div class="input-group" style="max-width: 360px">
-              <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
-              <input id="search-input" type="text" class="form-control" placeholder="Filter by Keyword"
-                value="<%= keyword || "" %>" />
-              <button class="btn btn-primary" type="submit"
-                onclick="javascript:document.location = `/<%= authors.b.id %>/categories?keyword=${document.getElementById('search-input').value}`">Go</button>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col">
-            <table class="table table-striped" style="table-layout: fixed">
-              <thead>
-                <tr>
-                  <th scope="col" class="py-3">#</th>
-                  <th scope="col" class="py-3">Name</th>
-                  <th scope="col" class="py-3">Description</th>
-                  <th scope="col" class="py-3">Image</th>
-                  <th scope="col" class="py-3"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <% const filteredCategories=keyword ? data.categories.filter(({id, name, description, image})=>
-                  `${id}.${name}.${description}.${image}`.toUpperCase().includes(keyword.toUpperCase())) :
-                  data.categories %>
-                  <% if (filteredCategories.length) { %>
-                    <% for( const {id,name, description,image} of filteredCategories) { %>
-                      <tr>
-                        <td class="py-3">
-                          <%= id %>
-                        </td>
-                        <td class="py-3">
-                          <%= name || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <%= description || "-" %>
-                        </td>
-                        <td class="py-3">
-                          <% if (image) { %>
-                            <img src="<%=image%>" width="100%" />
-                            <% } else { %>
-                              -
-                              <% } %>
-                        </td>
-                        <td class="py-3">
-                          <a href="/<%= authors.a.name %>/categories/<%= id %>"
-                            class="pe-2 link-underline-dark">Details</a>
-
-                          <a href="/<%= authors.b.id %>/categories" onclick="javascript:fetch('/<%= authors.b.id %>/categories/<%= id %>',  {
-                    method: 'DELETE'
-                  })" class="pe-2 link-danger link-underline-dark">Delete</a>
-                        </td>
-                      </tr>
-                      <% } %>
-                        <% } else { %>
-                          <tr>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                            <td class="py-3">-</td>
-                          </tr>
-                          <% }%>
-              </tbody>
-            </table>
-          </div>
+    <div class="row pb-5">
+      <div class="col" style="display:flex;">
+        <a class="btn btn-primary" href="/<%= authors.b.id %>/categories/add">Add a category</a>
+        <div style="flex: 1"></div>
+        <div class="input-group" style="max-width: 360px">
+          <span class="input-group-text"><i class="fa-solid fa-magnifying-glass"></i></span>
+          <input id="search-input" type="text" class="form-control" placeholder="Filter by Keyword" value="<%= keyword || "" %>" />
+          <button class="btn btn-primary" type="submit" onclick="javascript:document.location = `/<%= authors.b.id %>/categories?keyword=${document.getElementById('search-input').value}`">Go</button>
         </div>
       </div>
-  </body>
+    </div>
+    <div class="row">
+      <div class="col">
+        <table class="table table-striped" style="table-layout: fixed">
+          <thead>
+            <tr>
+              <th scope="col" class="py-3">#</th>
+              <th scope="col" class="py-3">Name</th>
+              <th scope="col" class="py-3">Description</th>
+              <th scope="col" class="py-3">Image</th>
+              <th scope="col" class="py-3"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% const filteredCategories=keyword ? data.categories.filter(({id, name, description, image})=>
+                  `${id}.${name}.${description}.${image}`.toUpperCase().includes(keyword.toUpperCase())) :
+                  data.categories %>
+            <% if (filteredCategories.length) { %>
+            <% for( const {id,name, description,image} of filteredCategories) { %>
+            <tr>
+              <td class="py-3">
+                <%= id %>
+              </td>
+              <td class="py-3">
+                <%= name || "-" %>
+              </td>
+              <td class="py-3">
+                <%= description || "-" %>
+              </td>
+              <td class="py-3">
+                <% if (image) { %>
+                <img src="<%=image%>" width="100%" />
+                <% } else { %>
+                -
+                <% } %>
+              </td>
+              <td class="py-3">
+                <a href="/<%= authors.a.name %>/categories/<%= id %>" class="pe-2 link-underline-dark">Details</a>
+                <a href="/<%= authors.b.id %>/categories" onclick="javascript:fetch('/<%= authors.b.id %>/categories/<%= id %>',  {
+                    method: 'DELETE'
+                  })" class="pe-2 link-danger link-underline-dark">Delete</a>
+              </td>
+            </tr>
+            <% } %>
+            <% } else { %>
+            <tr>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+              <td class="py-3">-</td>
+            </tr>
+            <% }%>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
 
 </html>
