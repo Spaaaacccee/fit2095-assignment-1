@@ -2,150 +2,150 @@
 <html data-bs-theme="dark">
 <%- include('./head.ejs') %>
 
-  <body>
-    <%- include('./header.ejs') %>
-      <div class="container py-3">
-        <div class="row py-5">
-          <h1 class="display-5">Task Group 1</h1>
-          <h1 class="lead">Tanishi, <%= authors.b.id %>
-          </h1>
-        </div>
-        <div class="row">
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Add a Category</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Create a new category using the <em>Add Category</em> form.
-                </p>
-                <a href="/<%= authors.b.id %>/categories/add" class="btn btn-primary">Add a category</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">View Categories</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Access a tabular view of all available categories.
-                </p>
-                <a href="/<%= authors.b.id %>/categories" class=" btn btn-primary">Go to categories</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">View Categories by Keyword</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Access a filtered tabular view of categories by keyword through
-                  the <em>Categories</em> page.
-                </p>
-                <a href="/<%= authors.b.id %>/categories?keyword=Example" class="btn btn-primary">Go to categories</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Show Event Details</h5>
-                <p class="card-text" style="min-height: 4em">
-                  View the details a specific event by selecting it on the
-                  <em>Events</em> page.
-                </p>
-                <a href="/<%= authors.a.name %>/categories/events" class="btn btn-primary">Go to events</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Delete Category</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Delete a category by selecting the <em>Delete</em> option for a
-                  specific category on the category page.
-                </p>
-                <a href="/<%= authors.b.id %>/categories" class="btn btn-primary">Go to categories</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2" />
-        </div>
-        <div class="row py-5">
-          <h1 class="display-5">Task Group 2</h1>
-          <h1 class="lead">Kevin, kevin</h1>
-        </div>
-        <div class="row">
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Add an Event</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Create a new event using the <em>Add Event</em> form.
-                </p>
-                <a href="/<%= authors.a.name %>/events/add" class="btn btn-primary">Add an event</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">View Events</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Access a tabular view of all events.
-                </p>
-                <a href="/<%= authors.a.name %>/events" class="btn btn-primary">Go to events</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">View Sold-out Events</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Access a filtered tabular view of events that are sold out
-                  through the <em>Events</em> page.
-                </p>
-                <a href="/<%= authors.a.name %>/events/sold-out" class="btn btn-primary">Go to events</a>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Show Category Details</h5>
-                <p class="card-text" style="min-height: 4em">
-                  View the details a specific event by selecting it on the
-                  <em>Categories</em> page.
-                </p>
-                <a href="/<%= authors.b.id %>/categories" class="btn btn-primary">Go to categories</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2">
-            <div class="card">
-              <div class="card-body">
-                <h5 class="card-title">Delete Event</h5>
-                <p class="card-text" style="min-height: 4em">
-                  Delete an event by selecting the <em>Event</em> option for a
-                  specific event on the events page.
-                </p>
-                <a href="/<%= authors.a.name %>/events" class="btn btn-primary">Go to events</a>
-              </div>
-            </div>
-          </div>
-          <div class="col py-2" />
-        </div>
-        <div class="row py-5 my-5">
-          <div class="col">
-            Made with <i class="fa-solid fa-heart"></i> by Kevin & Tanishi
+<body>
+  <%- include('./header.ejs') %>
+  <div class="container py-3">
+    <div class="row py-5">
+      <h1 class="display-5">Task Group 1</h1>
+      <h1 class="lead">Tanishi, <%= authors.b.id %>
+      </h1>
+    </div>
+    <div class="row">
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add a Category</h5>
+            <p class="card-text" style="min-height: 4em">
+              Create a new category using the <em>Add Category</em> form.
+            </p>
+            <a href="/<%= authors.b.id %>/categories/add" class="btn btn-primary">Add a category</a>
           </div>
         </div>
       </div>
-  </body>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Categories</h5>
+            <p class="card-text" style="min-height: 4em">
+              Access a tabular view of all available categories.
+            </p>
+            <a href="/<%= authors.b.id %>/categories" class=" btn btn-primary">Go to categories</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Categories by Keyword</h5>
+            <p class="card-text" style="min-height: 4em">
+              Access a filtered tabular view of categories by keyword through
+              the <em>Categories</em> page.
+            </p>
+            <a href="/<%= authors.b.id %>/categories?keyword=Example" class="btn btn-primary">Go to categories</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Show Event Details</h5>
+            <p class="card-text" style="min-height: 4em">
+              View the details a specific event by selecting it on the
+              <em>Events</em> page.
+            </p>
+            <a href="/<%= authors.a.name %>/events" class="btn btn-primary">Go to events</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Delete Category</h5>
+            <p class="card-text" style="min-height: 4em">
+              Delete a category by selecting the <em>Delete</em> option for a
+              specific category on the category page.
+            </p>
+            <a href="/<%= authors.b.id %>/categories" class="btn btn-primary">Go to categories</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2" />
+    </div>
+    <div class="row py-5">
+      <h1 class="display-5">Task Group 2</h1>
+      <h1 class="lead">Kevin, kevin</h1>
+    </div>
+    <div class="row">
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Add an Event</h5>
+            <p class="card-text" style="min-height: 4em">
+              Create a new event using the <em>Add Event</em> form.
+            </p>
+            <a href="/<%= authors.a.name %>/events/add" class="btn btn-primary">Add an event</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Events</h5>
+            <p class="card-text" style="min-height: 4em">
+              Access a tabular view of all events.
+            </p>
+            <a href="/<%= authors.a.name %>/events" class="btn btn-primary">Go to events</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">View Sold Out Events</h5>
+            <p class="card-text" style="min-height: 4em">
+              Access a filtered tabular view of events that are sold out
+              through the <em>Events</em> page.
+            </p>
+            <a href="/<%= authors.a.name %>/events/sold-out" class="btn btn-primary">Go to events</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Show Category Details</h5>
+            <p class="card-text" style="min-height: 4em">
+              View the details a specific event by selecting it on the
+              <em>Categories</em> page.
+            </p>
+            <a href="/<%= authors.b.id %>/categories" class="btn btn-primary">Go to categories</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">Delete Event</h5>
+            <p class="card-text" style="min-height: 4em">
+              Delete an event by selecting the <em>Event</em> option for a
+              specific event on the events page.
+            </p>
+            <a href="/<%= authors.a.name %>/events" class="btn btn-primary">Go to events</a>
+          </div>
+        </div>
+      </div>
+      <div class="col py-2" />
+    </div>
+    <div class="row py-5 my-5">
+      <div class="col">
+        Made with <i class="fa-solid fa-heart"></i> by Kevin & Tanishi
+      </div>
+    </div>
+  </div>
+</body>
 
 </html>
