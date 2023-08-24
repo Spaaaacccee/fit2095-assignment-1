@@ -48,7 +48,8 @@
               </thead>
               <tbody>
                 <% const filteredCategories=keyword ? data.categories.filter(({id, name, description, image})=>
-                  `${id}.${name}.${description}.${image}`.includes(keyword)) : data.categories %>
+                  `${id}.${name}.${description}.${image}`.toUpperCase().includes(keyword.toUpperCase())) :
+                  data.categories %>
                   <% if (filteredCategories.length) { %>
                     <% for( const {id,name, description,image} of filteredCategories) { %>
                       <tr>

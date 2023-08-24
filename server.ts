@@ -1,11 +1,12 @@
 import { urlencoded } from "body-parser";
 import { renderFile } from "ejs";
 import { static as assets, default as express } from "express";
-import { Dictionary as Dict, filter } from "lodash";
+import { Dictionary as Dict, filter, parseInt } from "lodash";
 import morgan from "morgan";
 import { resolve } from "path";
 import { Event } from "./Event";
 import { EventCategory } from "./EventCategory";
+import * as datefns from "date-fns";
 
 const port = 8080;
 
@@ -24,7 +25,7 @@ const data: { events: Event[]; categories: EventCategory[] } = {
 const relative = (path: string) => resolve(__dirname, path);
 
 const render = (path: string, args: Dict<any> = {}) =>
-  renderFile(path, { name, data, authors, ...args });
+  renderFile(path, { name, data, authors, datefns, ...args });
 
 const app = express();
 
@@ -99,11 +100,11 @@ app.use(
         description,
         image,
         categoryId,
-        startDateTime,
-        duration,
-        isActive,
-        capacity,
-        tickets
+        new Date(startDateTime),
+        parseInt(duration),
+        isActive === true,
+        parseInt(capacity),
+        parseInt(tickets)
       )
     );
     res.redirect(`/${authors.a.name}/events`);
@@ -111,9 +112,8 @@ app.use(
 
   // ─── List All Events ───────────────────────────────────────────────────────
 
-  app.get(`/${authors.a.name}/events`, async (req, res) => {
-    const { keyword } = req.query;
-    res.send(await render("pages/events/index.html"));
+  app.get(`/${authors.a.name}/events`, async (_, res) => {
+    res.send(await render("pages/events/index.html", { soldOutOnly: false }));
   });
 
   // ─── List Sold-out Events ──────────────────────────────────────────────────
