@@ -6,8 +6,8 @@
 
 <body>
   <%- include('../header.ejs') %>
-  <% if (img) { %>
-  <div style="background-image: linear-gradient(to bottom, #212529AA, #212529), url(<%=img%>); background-position:center; background-size:cover; height: 720px; width:100%; position: absolute; z-index: -1" />
+  <% if (event.image) { %>
+  <div style="background-image: linear-gradient(to bottom, #212529AA, #212529), url(<%=event.image%>); background-position:center; background-size:cover; height: 720px; width:100%; position: absolute; z-index: -1" />
   <% } %>
   <div class="container py-3">
     <div class="row py-5">
